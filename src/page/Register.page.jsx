@@ -26,7 +26,7 @@ const RegisterPage = () => {
   });
 
   useEffect(() => {
-    if (data) {
+    if (data?.success) {
       nav("/");
     }
   }, [data]);

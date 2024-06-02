@@ -3,3 +3,5 @@ export { default as RegisterPage } from "./Register.page";
 export { default as LoginPage } from "./Login.page";
 export { default as ContactPage } from "./Contact.page";
 export { default as ContactAddPage } from "./ContactAdd.page";
+
+export { default as DetailContactPage } from "./DetailContact.page";

@@ -10,6 +10,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../store/action/auth.action";
+import { login, processing } from "../slice/auth.slice";
+import { Login } from "../service/auth.service";
 
 const LoginPage = () => {
   const nav = useNavigate();
@@ -22,17 +24,17 @@ const LoginPage = () => {
     setFormData((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    LoginAction(dispatch, formData);
-    console.log(data);
+    dispatch(processing());
+    const res = await Login(formData);
+    dispatch(login(res.data));
   };
   useEffect(() => {
-    if (data) {
+    if (data?.success) {
       nav("/home");
     }
-    console.log(data);
   }, [data]);
 
   return (

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ButtonComponent, PreventComponent } from "../components";
 import { Outlet, useNavigate } from "react-router-dom";
+import { getProfile } from "../service/auth.service";
 
 const HomePage = () => {
   const nav = useNavigate();
@@ -11,6 +12,12 @@ const HomePage = () => {
   const handleAdd = (params) => {
     nav("/home/add");
   };
+
+  useEffect((params) => {
+    (async (params) => {
+      const res = await getProfile();
+    })();
+  }, []);
   return (
     <PreventComponent check={!localStorage.getItem("auth")} pass={"/"}>
       <div className="container mx-auto h-full z-10 bg-white flex">
